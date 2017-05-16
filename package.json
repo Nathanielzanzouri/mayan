@@ -4,8 +4,30 @@
   "description": "[SB Admin](http://startbootstrap.com/template-overviews/sb-admin/) is an open source, admin dashboard template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "awesome": "^0.0.7",
+    "body-parser": "^1.17.1",
+    "bootstrap": "^3.3.7",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "font": "^0.0.4",
+    "morgan": "^1.8.1",
+    "path": "^0.12.7",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nathanielzanzouri/mayan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nathanielzanzouri/mayan/issues"
+  },
+  "homepage": "https://github.com/Nathanielzanzouri/mayan#readme"
 }
