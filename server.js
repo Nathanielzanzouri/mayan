@@ -3,11 +3,10 @@ var express = require('express');
 var mysql = require('mysql');
 var path = require('path');
 var morgan = require('morgan');
+var router = require('router');
 var PORT = 8000; 
 
 var app = express();
-
-
 
 // mysql
 
@@ -20,7 +19,14 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query('SELECT * FROM mayan_dashboard.portfolioshist;', function(err, rows, fields) {
+connection.query('SELECT * FROM mayan_dashboard.portfolioshist WHERE name = "Nath";', function(err, rows, fields) {
+  if (!err)
+    console.log('The solution is: ', rows);
+  else
+    console.log('Error while performing Query.');
+});
+
+connection.query('SELECT * FROM mayan_dashboard.portfolioshist WHERE name = "Yohan";', function(err, rows, fields) {
   if (!err)
     console.log('The solution is: ', rows);
   else
@@ -31,9 +37,17 @@ connection.end();
 
 // end
 
+// Getting the pages 
+
+// Very important 
+
 app.set('view engine', 'ejs');
 
+// This let use access to the public file where there are js file , css file etc ..
+
 app.use(express.static(__dirname + '/public'));
+app.use(express.static('node_modules'));
+
 
 app.get('/risk', function(request, response){
   response.render('risk');
@@ -55,6 +69,9 @@ app.get('', function(request, response){
   response.render('risk');
 });
 
+app.get('/names', function(request, response){
+  response.send("Hello");
+});
 
 console.log('App listening on port ' + PORT);
 app.listen(PORT);
