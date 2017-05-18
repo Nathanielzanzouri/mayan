@@ -4,6 +4,7 @@ var mysql = require('mysql');
 var path = require('path');
 var morgan = require('morgan');
 var router = require('router');
+var http = require('http');
 var PORT = 8000; 
 
 var app = express();
@@ -26,14 +27,19 @@ connection.query('SELECT * FROM mayan_dashboard.portfolioshist WHERE name = "Nat
     console.log('Error while performing Query.');
 });
 
-connection.query('SELECT * FROM mayan_dashboard.portfolioshist WHERE name = "Yohan";', function(err, rows, fields) {
-  if (!err)
-    console.log('The solution is: ', rows);
-  else
-    console.log('Error while performing Query.');
+app.get('/api', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.portfolioshist WHERE name = "Nath";', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+  });
 });
 
-connection.end();
+// connection.end();
 
 // end
 
