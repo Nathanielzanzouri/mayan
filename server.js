@@ -20,15 +20,15 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query('SELECT * FROM mayan_dashboard.portfolioshist WHERE name = "Nath";', function(err, rows, fields) {
+connection.query('SELECT * FROM mayan_dashboard.portfolioshist', function(err, rows, fields) {
   if (!err)
     console.log('The solution is: ', rows);
   else
     console.log('Error while performing Query.');
 });
 
-app.get('/api', function(req, res) {
-  connection.query('SELECT * FROM mayan_dashboard.portfolioshist WHERE name = "Nath";', function (err, results, fields) {
+app.get('/id', function(req, res) {
+  connection.query('SELECT id FROM mayan_dashboard.portfolioshist', function (err, results, fields) {
       if (err) {
           console.log('Error in Query', err.message);
           res.status(500).send(err.message);
@@ -36,7 +36,47 @@ app.get('/api', function(req, res) {
       else 
         // render index view and pass in results JSON
         res.json(results);      
-  });
+});
+
+});
+
+app.get('/name', function(req, res) {
+  connection.query('SELECT name FROM mayan_dashboard.portfolioshist', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/user', function(req, res) {
+  connection.query('SELECT user FROM mayan_dashboard.portfolioshist;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/portfolioshist', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.portfolioshist;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
 });
 
 // connection.end();
@@ -73,10 +113,6 @@ app.get('/indicator', function(request, response){
 
 app.get('', function(request, response){
   response.render('risk');
-});
-
-app.get('/names', function(request, response){
-  response.send("Hello");
 });
 
 console.log('App listening on port ' + PORT);

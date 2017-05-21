@@ -23,6 +23,9 @@
     <!-- For chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 
+     <!-- Angular script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,6 +36,8 @@
 </head>
 
 <body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
 
     <div id="wrapper">
 
@@ -96,37 +101,37 @@
                                 <thead>
                                     <tr>
                                         <th>PNL</th>
-                                        <th>0</th>    
+                                        <th ng-repeat="x in records"></th>    
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>Intraday PNL</td>
-                                        <td>0</td>      
+                                        <th ng-repeat="x in records">{{x.incomingpnl}}</th>    
                                     </tr>
                                     <tr>
                                         <td>Trading PNL</td>
-                                        <td>0</td>
+                                        <th ng-repeat="x in records">{{x.tradingpnl}}</th>
                                     </tr>
                                     <tr>
                                         <td>Net Dollars Exposure</td>
-                                        <td>0</td>
+                                        <th ng-repeat="x in records">{{x.delta}}</th>
                                     </tr>
                                     <tr>
                                         <td>Long Dollars Exposure</td>
-                                        <td>0</td>
+                                        <th ng-repeat="x in records">{{x.longpos}}</th>
                                     </tr>
                                     <tr>
                                         <td>Short Dollars Exposure</td>
-                                        <td>0</td>
+                                        <th ng-repeat="x in records">{{x.shortpos}}</th>
                                     </tr>
                                     <tr>
                                         <td>Portfolio Beta</td>
-                                        <td>0</td>
+                                        <th ng-repeat="x in records">{{x.ptfbeta}}</th>
                                     </tr>
                                     <tr>
                                         <td>1-DAY 1% VAR</td>
-                                        <td>0</td>
+                                       <th ng-repeat="x in records">{{x.onedayonepctvar}}</th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -150,53 +155,11 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tr ng-repeat="x in records">
+                                        <th>{{x.user}}</th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -211,53 +174,11 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tr ng-repeat="x in records">
+                                        <th>{{x.name}}</th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -278,6 +199,9 @@
 
     </div>
     <!-- /#wrapper -->
+
+    <!-- myCtrl.js -->
+    <script type="text/javascript" src="app.js"></script>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
