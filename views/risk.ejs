@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta http-equiv="refresh" content="20; URL=http://localhost:8000/risk">
 
     <title>Mayan Capital</title>
 
@@ -20,6 +21,9 @@
 
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- For chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,8 +42,6 @@
 </head>
 
 <body>
-
-
 
 <div ng-app="myApp" ng-controller="myCtrl">
 
@@ -88,135 +90,442 @@
                         <h1 class="page-header">
                             Risk Report
                         </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i>Risk Report
+                        <ol class="breadcrumb" style="background-color: #1b4484;">
+                            <li class="active" style="color: white;>
+                                <i class="fa fa-dashboard" style="color: white;"></i>P&L AND RISK EXPOSURES - Aggregated
                             </li>
                         </ol>
                     </div>
                 </div>
-
-                 <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                       <div class="container">
-  <h2>Global Report</h2>
-  <div class="table-responsive">           
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Date</th>
-        <th>Name</th>
-        <th>User</th>
-        <th>Allocation</th>
-        <th>Incomingpnl</th>
-        <th>Tradingpnl</th>
-        <th>Brokerfees</th>
-        <th>Delta</th>
-        <th>VAR</th>
-        <th>Grossexp</th>
-        <th>Longpos</th>
-        <th>Shortpos</th>
-        <th>Industrial</th>
-        <th>Basicmaterials</th>
-        <th>Technology</th>
-        <th>Consumernoncyclial</th>
-        <th>Financial</th>
-        <th>Utilities</th>
-        <th>Communications</th>
-        <th>Consumercyclial</th>
-        <th>Energy</th>
-        <th>Diversified</th>
-        <th>Funds</th>
-        <th>Other</th>
-        <th>Ptfbeta</th>
-        <th>Onedayonepctvar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="x in records">
-        <td style="text-align: center">{{x.Id}}</td>
-        <td style="text-align: center">{{x.date}}</td>
-        <td style="text-align: center">{{x.name}}</td>
-        <td style="text-align: center">{{x.user}}</td>
-        <td style="text-align: center">{{x.allocation}}</td>
-        <td style="text-align: center">{{x.incomingpnl}}</td>
-        <td style="text-align: center">{{x.tradingpnl}}</td>
-        <td style="text-align: center">{{x.brokerfees}}</td>
-        <td style="text-align: center">{{x.delta}}</td>
-        <td style="text-align: center">{{x.VAR}}</td>
-        <td style="text-align: center">{{x.grossexp}}</td>
-        <td style="text-align: center">{{x.longpos}}</td>
-        <td style="text-align: center">{{x.shortpos}}</td>
-        <td style="text-align: center">{{x.industrial}}</td>
-        <td style="text-align: center">{{x.basicmaterials}}</td>
-        <td style="text-align: center">{{x.technology}}</td>
-        <td style="text-align: center">{{x.consumernoncyclical}}</td>
-        <td style="text-align: center">{{x.financial}}</td>
-        <td style="text-align: center">{{x.utilities}}</td>
-        <td style="text-align: center">{{x.communications}}</td>
-        <td style="text-align: center">{{x.consumercyclical}}</td>
-        <td style="text-align: center">{{x.energy}}</td>
-        <td style="text-align: center">{{x.diversified}}</td>
-        <td style="text-align: center">{{x.funds}}</td>
-        <td style="text-align: center">{{x.other}}</td>
-        <td style="text-align: center">{{x.ptfbeta}}</td>
-        <td style="text-align: center">{{x.onedayonepctvar}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-             </div>
-                </div>
-                 </div>
             
                 <!-- /.row -->
-                    
-                    
-                    
-                <!-- /.row -->
-
-
-                
-                <!-- /.row -->
 
                 <div class="row">
-
-                    <div class="col-lg-4">
+                 
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                               
+                            </div>
                             <div class="panel-body">
-                                <div class="text-right">
-                                    <a href="#" ng-click="myFunc()">View a specific report<i class="fa fa-arrow-circle-right"></i></a>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Month To Date</th>
+                                                <th>Year To Date</th>
+                                                <th>Since Inception</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in pnla1">
+                                                <td>{{x.id}}</td>
+                                                <td>{{x.mtd}}</td>
+                                                <td>{{x.ytd}}</td>
+                                                <td>{{x.si}}</td>                       
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-<!-- Specific reports visible after clicking -->
 
-                    <div ng-show="showMe" class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Specific Report </h3>
+                               
                             </div>
-                            <br>
-                          <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Report's list
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Report 1</a></li>
-      <li><a href="#">Report 2</a></li>
-      <li><a href="#">Report 3</a></li>
-    </ul>
-  </div>
-  <br>
-
-
-
-                   
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                   <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Month To Date</th>
+                                                <th>Year To Date</th>
+                                                <th>Since Inception</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in pnla2">
+                                                <td>{{x.Id}}</td>
+                                                <td>{{x.mdt}}</td>
+                                                <td>{{x.ytd}}</td>
+                                                <td>{{x.si}}</td>                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                </div>
                 <!-- /.row -->
+                         <ol class="breadcrumb" style="background-color: #1b4484;">
+                            <li class="active" style="color: white;>
+                                <i class="fa fa-dashboard"></i>P&L AND RISK EXPOSURES - Detailed
+                            </li>
+                        </ol>
+                  <!-- /.row -->
 
-            </div>
+                <div class="row">
+                 
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                P&L per industry
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                       <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Month To Date</th>
+                                                <th>Year To Date</th>
+                                                <th>Since Inception</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in pnldi">
+                                                <td>{{x.id}}</td>
+                                                <td>{{x.mtd}}</td>
+                                                <td>{{x.ytd}}</td>
+                                                <td>{{x.si}}</td>                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Average net exposure per Industry
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                     <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Month To Date</th>
+                                                <th>Year To Date</th>
+                                                <th>Since Inception</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in pnldiavg">
+                                                <td>{{x.Id}}</td>
+                                                <td>{{x.mtd}}</td>
+                                                <td>{{x.ytd}}</td>
+                                                <td>{{x.si}}</td>                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                    </div>
+                </div>
+                 <!-- /.row -->
+                         <ol class="breadcrumb" style="background-color: #1b4484;">
+                            <li class="active" style="color: white;>
+                                <i class="fa fa-dashboard"></i>MARKET SUMMARY 
+                            </li>
+                        </ol>
+                  <!-- /.row -->
+
+                <div class="row">
+                 
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                               
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Month To Date</th>
+                                                <th>Year To Date</th>
+                                                <th>Since Inception</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in ms1">
+                                                <td>{{x.Id}}</td>
+                                                <td>{{x.mtd}}</td>
+                                                <td>{{x.ytd}}</td>
+                                                <td>{{x.si}}</td>                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                              
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                       <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Corr to S&P500</th>
+                                                <th>Corr to Strategies4</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in ms2">
+                                                <td>{{x.Id}}</td>
+                                                <td>{{x.ctsp500}}</td>
+                                                <td>{{x.cts4}}</td>                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- /.row -->
+                         <ol class="breadcrumb" style="background-color: #1b4484;">
+                            <li class="active" style="color: white;>
+                                <i class="fa fa-dashboard"></i>ACTIVITY AND LIQUIDITY
+                            </li>
+                        </ol>
+                  <!-- /.row -->
+
+                <div class="row">
+
+                 <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="text-align: center;">       
+                               <b>ACTIVITY AND LIQUIDITY</b>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Month To Date</th>
+                                                <th>Year To Date</th>
+                                                <th>Since Inception</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in anl">
+                                                <td>{{x.Id}}</td>
+                                                <td>{{x.mtd}}</td>
+                                                <td>{{x.ytd}}</td>
+                                                <td>{{x.si}}</td>                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                           <div class="panel-heading" style="text-align: center;">
+                               Total volume traded per Industry
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+
+                                     <canvas id="myChartindustry"></canvas>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                           <div class="panel-heading" style="text-align: center;">
+                               Historical daily P&L distribution
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+
+                                     <canvas id="myChart2"></canvas>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                </div>
+
+                  <!-- /.row -->
+                         <ol class="breadcrumb" style="background-color: #1b4484;">
+                            <li class="active" style="color: white;>
+                                <i class="fa fa-dashboard"></i>STRATEGIES DETAILS
+                            </li>
+                        </ol>
+                  <!-- /.row -->
+
+                <div class="row">
+                 
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                           <div class="panel-heading" style="text-align: center;">
+                               Strategies description
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>SPY</th>
+                                                <th>Other Strategies4</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in sd1">
+                                                <td>{{x.Id}}</td>
+                                                <td>{{x.spy}}</td>
+                                                <td>{{x.os}}</td>
+                                                                
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="text-align: center;">
+                               Strategies description
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Style</th>
+                                                <th>Underlying Asset</th>
+                                                <th>Holding Period </th>
+                                                <th>Maximun exposure to one name</th>
+                                                <th>Alpha Exposure</th>
+                                                <th>Integrated since</th>
+                                            </tr>
+                                        </thead>
+                                        </thead>
+                                         <tbody>
+                                            <tr ng-repeat="x in sd2">
+                                                <td>{{x.Id}}</td>
+                                                <td>{{x.style}}</td>
+                                                <td>{{x.ua}}</td>
+                                                <td>{{x.hp}}</td>
+                                                <td>{{x.meton}}</td>
+                                                <td>{{x.alphaexp}}</td>
+                                                <td>{{x.is}}</td>                 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                </div>
+            <!-- /.container-fluid -->
+
+              <!-- /.row -->
+                         <ol class="breadcrumb" style="background-color: #1b4484;">
+                            <li class="active" style="color: white;>
+                                <i class="fa fa-dashboard"></i>Footnotes
+                            </li>
+                        </ol>
+                  <!-- /.row -->
+
+                <div class="row">
+                 
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                           
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <tbody>
+                                           <ul class="list-group">
+                                            <li class="list-group-item">1 - Highest end of day concentration in one security (includes ETF positions except SPY).</li>
+                                            <li class="list-group-item">2 - Average end of day net exposure of the portfolio</li>
+                                            <li class="list-group-item">3 - Average end of day net exposure to the S&P 500</li>
+                                            <li class="list-group-item">4 - Average correlation to Mayan's strategies over the period</li>
+                                            <li class="list-group-item">5 - Daily notional traded compared to the NAV</li>
+                                            <li class="list-group-item">6 - Average volume impact compared to the total volume traded in that security</li>
+                                          </ul>                    
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+
+                  <!-- /.row -->
+                         <ol class="breadcrumb" style="background-color: #1b4484;">
+                            <li class="active" style="color: white;>
+                                <i class="fa fa-dashboard"></i>Disclaimer
+                            </li>
+                        </ol>
+                  <!-- /.row -->
+
+                <div class="row">
+                 
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                           
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <tbody>
+                                          <h1 style="font-size: 15px;">
+                                              Future performance may be affected by existing and/or new events or factors, which may or may not have played any material role in the past. Therefore no assurance or guarantee can be given that the actual trading results achieved using those strategies and/or models employed during this simulation, and/or others that are being used and/or may be used in the future, are or will be as successful and/or achieve the same results as those presented above. PAST PERFORMANCE, ESPECIALLY SIMULATED PERFORMANCE, IS NOT AN INDICATOR OR GUARANTEE OF FUTURE RESULTS. The results of the simulation are being provided to you by the Investment Manager solely to assist you in considering your potential interest in making an investment in a potential future strategy, account or product to be managed by the Investment Manager.
+                                              <br>
+                                              <br>
+
+NEITHER THIS DOCUMENT NOR ANY OTHER ACCOMPANYING INFORMATION CONSTITUTE AN OFFER TO SELL OR THE SOLICITATION OF ANY OFFER TO BUY ANY SECURITIES WHICH MAY ONLY BE MADE AT THE TIME A QUALIFIED OFFEREE RECEIVES A CONFIDENTIAL OFFERING MEMORANDUM OR INVESTMENT MANAGEMENT AGREEMENT DESCRIBING THE APPLICABLE OFFERING AND RELATED OPERATING DOCUMENT(S) AND SUBSCRIPTION AGREEMENT, AND THE TERMS OF THIS DOCUMENT AND
+ANY ACCOMPANYING INFORMATION ARE QUALIFIED IN THEIR ENTIRETY BY THE TERMS THEREOF. IN THE EVENT OF ANY CONFLICT BETWEEN THIS DOCUMENT AND ANY ACCOMPANYING INFORMATION, THE CONFIDENTIAL OFFERING
+MEMORANDUM OR INVESTMENT MANAGEMENT AGREEMENT AND RELATED OFFERING MATERIALS SHALL CONTROL. THE SECURITIES DISCUSSED HEREIN SHALL NOT BE OFFEREDOR SOLD, NOR SHALL THERE BE ANY SOLICITATION OF ANY OFFER TO
+BUY SUCH SECURITIES, IN ANY JURISDICTION IN WHICH SUCH OFFER, SALE OR SOLICITATION WOULD BE UNLAWFUL UNTIL THE REQUIREMENTS OF THE LAWS OF SUCH JURISDICTIONS HAVE BEEN SATISFIED.
+<br>
+<br>
+An investment in any investment strategy or product is speculative and involves significant risk, including the risk of a total loss of capital. Opportunities for withdrawal or transfer of interests in a strategy may be limited and therefore an investor may not have access to its capital when it desires.
+
+This information is being furnished to the recipient on a confidential basis, is not intended for public use or distribution, and by accepting this file, you agree to keep confidential the existence of this document and the information contained herein.
+
+The recipient should not disclose, reproduce, distribute or otherwise make available the existence of and/or all or any portion of the information contained herein to any other person (other than its employees, officers and advisors on a need-to-
+know basis, whom the recipient will cause to keep the information confidential) without the Investment Manager's prior written consent
+                                          </h1>          
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             <!-- /.container-fluid -->
 
         </div>
@@ -225,9 +534,12 @@
     </div>
     <!-- /#wrapper -->
 
-     <br>
+        </div>
+        <!-- /#page-wrapper -->
 
-
+    </div>
+    <!-- /#wrapper -->
+    <br>
     <!-- myCtrl.js -->
     <script type="text/javascript" src="app.js"></script>
     <!-- jQuery -->
@@ -240,6 +552,9 @@
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
+
+     <!--     Chart.js -->
+    <script src="js/chart.js"></script>
 
 </body>
 

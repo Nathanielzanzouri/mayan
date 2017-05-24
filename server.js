@@ -9,7 +9,7 @@ var PORT = 8000;
 
 var app = express();
 
-// mysql
+// mysql connection to the db 
 
 var connection = mysql.createConnection({
   host     : '127.0.0.1',
@@ -20,50 +20,13 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+// generate a json file from the mysql database
+
 connection.query('SELECT * FROM mayan_dashboard.portfolioshist', function(err, rows, fields) {
   if (!err)
     console.log('The solution is: ', rows);
   else
     console.log('Error while performing Query.');
-});
-
-app.get('/id', function(req, res) {
-  connection.query('SELECT id FROM mayan_dashboard.portfolioshist', function (err, results, fields) {
-      if (err) {
-          console.log('Error in Query', err.message);
-          res.status(500).send(err.message);
-      }
-      else 
-        // render index view and pass in results JSON
-        res.json(results);      
-});
-
-});
-
-app.get('/name', function(req, res) {
-  connection.query('SELECT name FROM mayan_dashboard.portfolioshist', function (err, results, fields) {
-      if (err) {
-          console.log('Error in Query', err.message);
-          res.status(500).send(err.message);
-      }
-      else 
-        // render index view and pass in results JSON
-        res.json(results);      
-});
-
-});
-
-app.get('/user', function(req, res) {
-  connection.query('SELECT user FROM mayan_dashboard.portfolioshist;', function (err, results, fields) {
-      if (err) {
-          console.log('Error in Query', err.message);
-          res.status(500).send(err.message);
-      }
-      else 
-        // render index view and pass in results JSON
-        res.json(results);      
-});
-
 });
 
 app.get('/portfolioshist', function(req, res) {
@@ -78,6 +41,124 @@ app.get('/portfolioshist', function(req, res) {
 });
 
 });
+
+app.get('/pnla1', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.pnla1;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/pnla2', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.pnla2;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/pnldi', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.pnldi;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/pnldiavg', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.pnldiavg;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/ms1', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.ms1;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/ms2', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.ms2;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/anl', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.anl;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/sd1', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.sd1;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/sd2', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.sd2;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
 
 // connection.end();
 

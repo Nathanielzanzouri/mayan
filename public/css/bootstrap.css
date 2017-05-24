@@ -6754,4 +6754,8 @@ button.close {
     display: none !important;
   }
 }
+
+.disclaimer {
+  font-size: 6px;
+}
 /*# sourceMappingURL=bootstrap.css.map */
