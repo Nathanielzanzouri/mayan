@@ -159,6 +159,33 @@ app.get('/sd2', function(req, res) {
 
 });
 
+app.get('/tvtpi', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.tvtpi;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+app.get('/hdpnld', function(req, res) {
+  connection.query('SELECT * FROM mayan_dashboard.hdpnld;', function (err, results, fields) {
+      if (err) {
+          console.log('Error in Query', err.message);
+          res.status(500).send(err.message);
+      }
+      else 
+        // render index view and pass in results JSON
+        res.json(results);      
+});
+
+});
+
+
 
 // connection.end();
 

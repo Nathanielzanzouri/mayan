@@ -54,6 +54,16 @@ var url = "http://localhost:8000/sd2";
                 $scope.sd2 = response;
             });
 
+var url = "http://localhost:8000/tvtpi";
+            $http.get(url).success(function (response) {
+                $scope.tvtpi = response;
+            });
+
+var url = "http://localhost:8000/hdpnld";
+            $http.get(url).success(function (response) {
+                $scope.hdpnld = response;
+            });
+
 // show report when its clicked
 
     $scope.showMe = false;

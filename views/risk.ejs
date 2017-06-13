@@ -371,6 +371,51 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Industry</th>
+                                                <th>Volume(%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in tvtpi">
+                                                <td>{{x.Id}}</td>
+                                                <td>{{x.volume}}</td>                       
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                     <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Average</th>
+                                                <th>Distribution(%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in hdpnld">
+                                                <td>{{x.Id}}</td>
+                                                <td>{{x.distribution}}</td>                    
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                      
                 </div>
 
@@ -403,8 +448,7 @@
                                             <tr ng-repeat="x in sd1">
                                                 <td>{{x.Id}}</td>
                                                 <td>{{x.spy}}</td>
-                                                <td>{{x.os}}</td>
-                                                                
+                                                <td>{{x.os}}</td>                  
                                         </tbody>
                                     </table>
                                 </div>
